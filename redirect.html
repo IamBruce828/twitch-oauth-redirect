@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twitch OAuth Redirect</title>
+</head>
+<body>
+    <p>Redirecting to your app...</p>
+    <script>
+        // Extract the authorization code from the URL query parameters
+        const params = new URLSearchParams(window.location.search);
+        const code = params.get('code');
+
+        if (code) {
+            // Construct the custom URI to redirect back to your app
+            const appUri = `twitchoauthapp://callback?code=${code}`;
+            
+            // Redirect to your app using the custom URI
+            window.location.href = appUri;
+        } else {
+            document.body.innerHTML = "Error: Authorization code not found.";
+        }
+    </script>
+</body>
+</html>
